@@ -1,10 +1,10 @@
-import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO #импортирую модуль работыс GPIO
 import time
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM) #создаю перемнную со списком GPI-пинов, подключенных ко входам R2R ЦАП в блоке 8-bit DAc
 dac_bits = [16, 20, 21, 25, 26, 17, 27, 22]
-GPIO.setup(dac_bits, GPIO.OUT)
-dynamic_range = 3.137
+GPIO.setup(dac_bits, GPIO.OUT) #настраиваю пины, как выходы
+dynamic_range = 3.137 #создаю переменную с динамическим диапазоном R2R ЦАП(3.3В)
 
 def voltage_to_number(voltage):
     if not (0.0 <= voltage <= dynamic_range):
@@ -20,7 +20,7 @@ def number_to_dac(number):
     s = [int(i) for i in s]
     GPIO.output(dac_bits, s)
             
-try:
+try: #дополняю скрипт его рабочей частью
     while True:
         try:
             voltage = float(input("Введите напряжение в Вольах:"))
