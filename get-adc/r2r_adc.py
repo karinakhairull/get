@@ -29,8 +29,7 @@ class R2R_ADC:
             time.sleep(self.compare_time)
             if GPIO.input(self.comp_gpio):
                 return(i)
-            if i == 255:
-                return(i)
+        return 255
 
     def get_sc_voltage(self):
         number = R2R_ADC.sequential_couting_adc(self)
